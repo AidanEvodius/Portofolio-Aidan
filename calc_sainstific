@@ -1,0 +1,151 @@
+import java.util.*;
+import java.lang.Math;
+
+public class kalkulatorsainsjava {
+
+    static Scanner sc = new Scanner(System.in);
+
+    // ================= OPERASI DASAR =================
+    static void operasiDasar() {
+        System.out.println("\n--- Operasi Dasar ---");
+        System.out.println("1. Penjumlahan (+)");
+        System.out.println("2. Pengurangan (-)");
+        System.out.println("3. Perkalian (*)");
+        System.out.println("4. Pembagian (/)");
+        System.out.println("5. Modulus (%)");
+        System.out.println("6. Pangkat (^)");
+        System.out.println("7. Akar (sqrt)");
+
+        int pilih = sc.nextInt();
+
+        if (pilih == 7) {
+            System.out.print("Masukkan angka: ");
+            double x = sc.nextDouble();
+            if (x < 0) {
+                System.out.println("Tidak bisa akar negatif!");
+            } else {
+                System.out.println("Hasil = " + Math.sqrt(x));
+            }
+            return;
+        }
+
+        System.out.print("Angka pertama: ");
+        double a = sc.nextDouble();
+
+        System.out.print("Angka kedua: ");
+        double b = sc.nextDouble();
+
+        switch (pilih) {
+            case 1:
+                System.out.println("Hasil = " + (a + b));
+                break;
+            case 2:
+                System.out.println("Hasil = " + (a - b));
+                break;
+            case 3:
+                System.out.println("Hasil = " + (a * b));
+                break;
+            case 4:
+                if (b == 0)
+                    System.out.println("Tidak bisa bagi nol!");
+                else
+                    System.out.println("Hasil = " + (a / b));
+                break;
+            case 5:
+                System.out.println("Hasil = " + (a % b));
+                break;
+            case 6:
+                System.out.println("Hasil = " + Math.pow(a, b));
+                break;
+            default:
+                System.out.println("Pilihan tidak valid");
+        }
+    }
+
+    // ================= TRIGONOMETRI =================
+    static void trigonometri() {
+        System.out.print("Masukkan sudut (derajat): ");
+        double x = sc.nextDouble();
+
+        System.out.println("sin = " + Math.sin(Math.toRadians(x)));
+        System.out.println("cos = " + Math.cos(Math.toRadians(x)));
+        System.out.println("tan = " + Math.tan(Math.toRadians(x)));
+    }
+
+    // ================= LOGARITMA =================
+    static void logaritma() {
+        System.out.print("Masukkan angka (>0): ");
+        double x = sc.nextDouble();
+
+        if (x <= 0) {
+            System.out.println("Log hanya untuk angka > 0");
+        } else {
+            System.out.println("log10 = " + Math.log10(x));
+            System.out.println("ln = " + Math.log(x));
+        }
+    }
+
+    // ================= FAKTORIAL & KOMBINASI =================
+    static void faktorialKombinasi() {
+        System.out.print("Masukkan n: ");
+        int n = sc.nextInt();
+
+        if (n < 0) {
+            System.out.println("Tidak boleh negatif");
+            return;
+        }
+
+        int faktorial = 1;
+        for (int i = 1; i <= n; i++)
+            faktorial *= i;
+
+        System.out.println("Faktorial = " + faktorial);
+
+        System.out.print("Masukkan r (untuk nCr): ");
+        int r = sc.nextInt();
+
+        if (r < 0 || r > n) {
+            System.out.println("r harus 0 <= r <= n");
+            return;
+        }
+
+        int faktR = 1;
+        for (int i = 1; i <= r; i++)
+            faktR *= i;
+
+        int faktNR = 1;
+        for (int i = 1; i <= (n - r); i++)
+            faktNR *= i;
+
+        System.out.println("nCr = " + (faktorial / (faktR * faktNR)));
+    }
+
+    // ================= MAIN =================
+    public static void main(String[] args) {
+
+        while (true) {
+            System.out.println("\n=== KALKULATOR ADVANCED ===");
+            System.out.println("1. Operasi Dasar");
+            System.out.println("2. Trigonometri");
+            System.out.println("3. Logaritma");
+            System.out.println("4. Faktorial & Kombinasi");
+            System.out.println("0. Keluar");
+
+            int pilihan = sc.nextInt();
+
+            if (pilihan == 1)
+                operasiDasar();
+            else if (pilihan == 2)
+                trigonometri();
+            else if (pilihan == 3)
+                logaritma();
+            else if (pilihan == 4)
+                faktorialKombinasi();
+            else if (pilihan == 0) {
+                System.out.println("Program selesai.");
+                break;
+            } else
+                System.out.println("Pilihan tidak valid.");
+        }
+    }
+}
